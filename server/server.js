@@ -19,6 +19,7 @@ app.use(
 app.post('/api/signup', authCtrl.register)
 app.post('/api/login', authCtrl.login)
 app.get('/api/logout', authCtrl.logout)
+app.get('/api/user', authCtrl.checkUser)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)

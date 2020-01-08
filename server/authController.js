@@ -26,12 +26,13 @@ module.exports = {
         res.status(200).send({ message: 'Logged in', userData: req.session.user })
     },
     login: async (req, res) => {
+        console.log('hit')
         const db = req.app.get('db')
         const { email, password } = req.body
         // check if email has an account
         const user = await db.find_hash({ email })
         // not found - send message
-        if (!user[0]) return res.status(200).send({ message: 'Email not found' })
+        if (!user[0]) return res.status(404).send({ message: 'Email not found' })
 
         // email was found - compare hashes
         const result = bcrypt.compareSync(password, user[0].hash_value)
@@ -43,5 +44,11 @@ module.exports = {
     logout: async (req, res) => {
         req.session.destroy()
         res.status(200).send({ message: 'Logged out' })
+    },
+    checkUser: (req, res) => {
+        console.log('hit checkuser')
+        if (req.session.user) return res.status(200).send(req.session.user)
+        console.log('hit error')
+        return res.status(404).send({ error: 'no user found' })
     }
 }
