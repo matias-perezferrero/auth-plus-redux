@@ -13,8 +13,3 @@ SESSION_SECRET = mnoiUIvhkjBMjGHIUYGogY879YT&T(&^fiuhkJV>
 
 ### Schema Used:
 The schema used is found in the `seed.sql` file of the `db` folder.
-
-#### Instructor Notes
-
-- The master branch contains a starting point for the class to follow along with.
-- Switch to the `finished` branch to see example code and instructor resources (in the readme).
